@@ -1,1 +1,1 @@
-# credit-card-checker
+# check-credit-card-number
