@@ -23,25 +23,23 @@ const mystery5 = [4, 9, 1, 3, 5, 4, 0, 4, 6, 3, 0, 7, 2, 5, 2, 3]
 const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, invalid3, invalid4, invalid5, mystery1, mystery2, mystery3, mystery4, mystery5]
 
 
-// Add your functions below:
-const validateCred = (arr) => {
-  let newArr = arr.reverse();
+// Luhn algo formula
+function validateCred(arr) {
   let sum = 0;
-
-  for (let i = 0; i < newArr.length; i++) {
-    const element = newArr[i];
-    if (i % 2 !== 0) {
-      if (element * 2 > 9) {
-        sum += element * 2 - 9;
-      } else {
-        sum += element * 2;
+  for (let i = arr.length - 1; i >= 0; i--) {
+    let element = arr[i]
+    if ((arr.length - 1 - i) % 2 === 1) {
+      element *= 2;
+      if (element > 9) {
+        element -= 9;
       }
-    } else {
-      sum += element;
     }
+    sum += element;
   }
+
   return sum % 10 === 0;
-};
+
+}
 
 console.log(validateCred(valid1)); // Should print true
 console.log(validateCred(valid2)); // Should print true
@@ -54,7 +52,18 @@ console.log(validateCred(invalid3)); // Should print false
 console.log(validateCred(invalid4)); // Should print false
 console.log(validateCred(invalid5)); // Should print false
 
+//  check for invalid numbers.
+const findInvalidCards = (ccNumbers) => {
+    const invalidCardNumbers = [];
 
-
-
+    for (let i = 0; i < ccNumbers.length; i++) {
+      let element = ccNumbers[i];
+      if(!validateCred(element)){
+        invalidCardNumbers.push(element);
+      }
+    }
+    return invalidCardNumbers;
+};
+console.log(findInvalidCards([valid1, valid2, valid3, valid4, valid5]));// Shouldn't print anything
+console.log(findInvalidCards([invalid1, invalid2, invalid3, invalid4, invalid5])); // Should print all of the numbers
 
