@@ -54,16 +54,17 @@ console.log(validateCred(invalid5)); // Should print false
 
 //  check for invalid numbers.
 const findInvalidCards = (ccNumbers) => {
-    const invalidCardNumbers = [];
+  const invalidCardNumbers = [];
 
-    for (let i = 0; i < ccNumbers.length; i++) {
-      let element = ccNumbers[i];
-      if(!validateCred(element)){
-        invalidCardNumbers.push(element);
-      }
+  for (let i = 0; i < ccNumbers.length; i++) {
+    let element = ccNumbers[i];
+    if (!validateCred(element)) {
+      invalidCardNumbers.push(element);
     }
-    return invalidCardNumbers;
+  }
+  return invalidCardNumbers;
 };
 console.log(findInvalidCards([valid1, valid2, valid3, valid4, valid5]));// Shouldn't print anything
-console.log(findInvalidCards([invalid1, invalid2, invalid3, invalid4, invalid5])); // Should print all of the numbers
-
+console.log(
+  findInvalidCards([invalid5])
+); // Should print all of the numbers
